@@ -25,8 +25,8 @@ output:
     install.packages(packages[!installed_packages])
    }
   invisible(lapply(packages, library, character.only = TRUE))
-  path = "/home/developer/projects/Uganda/Uganda/"
-  #path = "/Users/sjungjohann/OneDrive - Global Alliance for Improved Nutrition/Data for analysis/R syntax/GAIN-R-dev/"
+  #path = "/home/developer/projects/Uganda/Uganda/"
+  path = "/Users/sjungjohann/OneDrive - Global Alliance for Improved Nutrition/Data for analysis/R syntax/GAIN-R-dev/"
   
    increment_table_number <- function() {
      if (!exists("table_number")) {
@@ -697,7 +697,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -739,7 +739,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -858,7 +858,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -900,7 +900,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -1583,7 +1583,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -1625,7 +1625,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -2166,7 +2166,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -2208,7 +2208,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -2748,7 +2748,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 14)))+
@@ -3263,7 +3263,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
         "Wholesaler" = "cadetblue3",
         "Supermarket" = "orange",
         "Market Stall" = "lightgreen",
-        "Grocery Store / Retail Shop coral" = "coral",
+        "Grocery Store / Retail Shop" = "coral",
         "Bakery" = "#b19cd9",
         "Government Store" = "chartreuse",
         "Kiosk" = "yellow"), guide = guide_legend(override.aes = list(size = 18)))+
