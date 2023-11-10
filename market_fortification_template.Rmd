@@ -165,7 +165,8 @@ output:
    ## food fortification labelling calculation
    
    foodFort2Data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort2.xlsx'), na = "-")
-   foodFort2Data <- foodFort2Data[,c("food", "product_fortification_status2", "ProductPercentFort2", "ProdVolPercentFort2")]
+   foodFort2Data <- foodFort2Data[,c("food", "product_fortification_status2", "ProductPercentFort2", 
+                                     "ProdVolPercentFort2")]
    food_index <- grep("food", colnames(foodFort2Data))
    status_index <- grep("product_fortification_status2", colnames(foodFort2Data))
    prodper_index <- grep("ProductPercentFort2", colnames(foodFort2Data))
@@ -638,7 +639,7 @@ The market share was used to estimate the proportion of the food vehicle market 
             position = position_stack(vjust = 1.0), color = "black", size = 4, fontface = "bold") +
   labs(x = "Food", y = "# of retail outlets", caption = caption) +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 16, face = "plain"),
   axis.title.x = element_text(size = 16, face = "plain"),
@@ -769,7 +770,6 @@ The market share was used to estimate the proportion of the food vehicle market 
   knitr::include_graphics("Stackbar_ShopPerc_FoodStoretype.png")
 ```
 
-
 ## Products by food
 ```{r}
   increment_table_number()
@@ -800,7 +800,7 @@ The market share was used to estimate the proportion of the food vehicle market 
             position = position_stack(vjust = 1.0), color = "black", size = 4, fontface = "bold") +
   labs(x = "Food", y = "# of products", caption = caption) +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 16, face = "plain"),
   axis.title.x = element_text(size = 16, face = "plain"),
@@ -958,13 +958,8 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Number of products by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ProductCount2, fill = interaction(food,food_type,lex.order = 
-                                                                          T)))+
+  colrs = c ('orange', 'cadetblue3','coral1', 'green', 'orange', 'cadetblue3', 'green', 'orange', 'cadetblue3','coral1', 'green', 'orange', 'cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ProductCount2, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 8)))+
@@ -974,7 +969,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   geom_text(aes(label =round(ProductCount2)),
            position = position_stack(vjust = 0.5), color = "black", size = 4, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -990,7 +985,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   panel.border = element_blank(),
   plot.margin = unit(c(1, 1, 1, 1), "cm"),
   #plot.background = element_rect(fill = "white", color = "#518307", size=1),
-  plot.caption = element_text(size=16, hjust = -0.1, vjust = 158))
+  plot.caption = element_text(size=16, hjust = 0.2, vjust = 158))
   ggsave("Bar_ProdCount_FoodType.png", width = 14, height = 8, dpi = 300)
   knitr::include_graphics("Bar_ProdCount_FoodType.png")
 ```
@@ -999,13 +994,8 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Percentage of products by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ProductPercentType, fill = interaction(food,food_type,lex.order =
-                                                                               T)))+
+  colrs = c ('orange', 'cadetblue3','coral1', 'green', 'orange', 'cadetblue3', 'green', 'orange', 'cadetblue3','coral1', 'green', 'orange', 'cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ProductPercentType, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 7)))+
@@ -1015,7 +1005,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   geom_text(aes(label =round(ProductPercentType)),
            position = position_stack(vjust = 0.5), color = "black", size = 4, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -1244,9 +1234,20 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_table_number()
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data[,c("food","product_fortification_status","ProductCount2","ProductPercentFort")]
+  desired_order <- c(
+  "Partially fortified",
+  "Fortified below standard min",
+  "Fortified above standard max",
+  "Fortified above standard min",
+  "Fortified to any extent",
+  "Fortified within standard range",
+  "Not fortified",
+  "Not analyzed"
+  )
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = desired_order)
   data <- mutate(data, value = paste0(ProductCount2," (",round(ProductPercentFort, digits = 1),")"))
   data <- data[,c("food","product_fortification_status","value")]
-  data <- pivot_wider(data, names_from = product_fortification_status, values_from = value)
+  data <- pivot_wider(data, names_from = product_fortification_status, values_from = value, names_sort = TRUE)
   ft <- flextable(data) %>% theme_box()
   ft <- bold(ft, bold = TRUE, part = "header")
   ft <- bg(ft, bg = "gray95", part = "header")
@@ -1268,7 +1269,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   caption <- paste0("Figure: ", figure_number, ": Number of products by food and fortification status")
   data <- read_excel(paste0(path,'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data[ , c("food","product_fortification_status",'ProductCount2')]
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   p <- ggplot(data, aes(x = food, y = ProductCount2, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = product_fortification_status))+
@@ -1279,7 +1280,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
+        "Fortified to any extent" = "chartreuse3",
         "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+ 
   labs(x = "Food", y = "# of products",
        fill = "Product Fortification Status",
@@ -1312,7 +1313,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure: ", figure_number, ": Percentage of products by food and fortification status")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   colrs = c ('grey', 'red','orange','yellow','cadetblue3','chartreuse4','chartreuse3')
   p <- ggplot(data, aes(x = food, y = ProductPercentFort, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "fill")+
@@ -1324,7 +1325,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
+        "Fortified to any extent" = "chartreuse3",
         "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+
   labs(x = "Food", y = "% of products",
        fill = "Fortification status",
@@ -1358,7 +1359,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_table_number()
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data %>% dplyr::filter(food=="Oil")
-  data <- data[,c("food","product_fortification_status", "VitA_product_avg_min_pos_or_blank_Total", 
+  data <- data[,c("food","product_fortification_status", "VitA_product_avg_min_pos_or_blank_Total",
                   "VitA_product_avg_max_pos_or_blank_Total", "VitA_product_avg_pos_or_blank_Total")]
   ft <- flextable(data) %>% theme_box()
   ft <- bold(ft, bold = TRUE, part = "header")
@@ -1368,15 +1369,15 @@ The market share was used to estimate the proportion of the food vehicle market 
     product_fortification_status = "Product fortification status",
     VitA_product_avg_min_pos_or_blank_Total = "Minimum vitamin A content (mg/kg)",
     VitA_product_avg_max_pos_or_blank_Total = "Maximum vitamin A content (mg/kg)",
-    VitA_product_avg_pos_or_blank_Total = "Average vitamin A content (mg/kg)",	
-    Iron_product_avg_min_pos_or_blank_Total 	= "Minimum iron content (mg/kg)",
+    VitA_product_avg_pos_or_blank_Total = "Average vitamin A content (mg/kg)",
+    Iron_product_avg_min_pos_or_blank_Total = "Minimum iron content (mg/kg)",
     Iron_product_avg_max_pos_or_blank_Total = "Maximum iron content (mg/kg)",
     Iron_product_avg_pos_or_blank_Total	= "Average iron content (mg/kg)",
-    Zinc_product_avg_min_pos_or_blank_Total	= "Minimum zinc content (mg/kg)", 
-    Zinc_product_avg_max_pos_or_blank_Total	= "Maximum zinc content (mg/kg)",	
+    Zinc_product_avg_min_pos_or_blank_Total	= "Minimum zinc content (mg/kg)",
+    Zinc_product_avg_max_pos_or_blank_Total	= "Maximum zinc content (mg/kg)",
     Zinc_product_avg_pos_or_blank_Total	= "Average zinc content (mg/kg)",
-    Iodine_product_avg_min_pos_or_blank_Total	= "Minimum iodine content (mg/kg)", 
-    Iodine_product_avg_max_pos_or_blank_Total	= "Maximum iodine content (mg/kg)",	
+    Iodine_product_avg_min_pos_or_blank_Total	= "Minimum iodine content (mg/kg)",
+    Iodine_product_avg_max_pos_or_blank_Total	= "Maximum iodine content (mg/kg)",
     Iodine_product_avg_pos_or_blank_Total	= "Average iodine content (mg/kg)")
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
@@ -1395,9 +1396,9 @@ The market share was used to estimate the proportion of the food vehicle market 
   data <- data %>% dplyr::filter(food=="Oil")
   VitA_standard_min <- data$VitA_standard_min_avg[1]
   VitA_standard_min <- ifelse(is.na(VitA_standard_min),  6, VitA_standard_min)
-  p <- ggplot(data, aes(x = factor(product_fortification_status), y =     
+  p <- ggplot(data, aes(x = factor(product_fortification_status), y =
                      VitA_product_avg_pos_or_blank_Total,fill=VitA_product_avg_pos_or_blank_Total)) +
-  geom_errorbar(aes(ymin = VitA_product_avg_min_pos_or_blank_Total , ymax =  
+  geom_errorbar(aes(ymin = VitA_product_avg_min_pos_or_blank_Total , ymax =
                       VitA_product_avg_max_pos_or_blank_Total), width = 0.2, color = "black") + geom_point(size = 3, color = "#518307",na.rm=TRUE)+
   ylab("Mg/Kg") +
   xlab("") +
@@ -1406,7 +1407,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   labs(caption = caption)+
   scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+  
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 14, face = "plain"),
   axis.title.x = element_text(size = 20, face = "plain"),
@@ -1444,7 +1445,7 @@ The market share was used to estimate the proportion of the food vehicle market 
     product_fortification_status = "Product fortification status",
     product_avg_price_kg_l_avg = "Average price per kg or L",
     product_min_price_kg_l_avg = "Minimum price per kg or L",
-    product_max_price_kg_l_avg = "Maximum price per kg or L" )
+    product_max_price_kg_l_avg = "Maximum price per kg or L")
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
   ft <- merge_v(ft, j = "food")
@@ -1470,7 +1471,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   labs(caption = caption)+
   scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
     theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 14, face = "plain"),
   axis.title.x = element_text(size = 20, face = "plain"),
@@ -1494,7 +1495,6 @@ The market share was used to estimate the proportion of the food vehicle market 
 ```
 
 ## Retail penetration by food
-
 ```{r}
   increment_table_number()
   data <- read_excel(paste0(path, 'ReportsumProdVol_Food.xlsx'), na = "-")
@@ -1544,7 +1544,6 @@ The market share was used to estimate the proportion of the food vehicle market 
   ggsave("Bar_Repcount_Food.png", width = 8, height = 8, dpi = 300)
   knitr::include_graphics("Bar_Repcount_Food.png")
 ```
-
 
 ## Retail penetration by food and retail outlet type
 ```{r}
@@ -1683,13 +1682,11 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Retail penetration by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ReportCount2, fill = interaction(food,food_type,lex.order = 
-                                                                          T)))+
+  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue','coral',
+             'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green','orange', 'cadetblue3', 'coral1',
+             'yellow', 'purple', 'green','orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' ,
+             'coral1', 'yellow','purple', 'green', 'orange', 'cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ReportCount2, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 7)))+
@@ -1699,7 +1696,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   geom_text(aes(label =round(ReportCount2)),
            position = position_stack(vjust = 0.5), color = "black", size = 4, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -1724,13 +1721,11 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Percentage of retail penetration by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ReportPercentType, fill = interaction(food,food_type,lex.order =
-                                                                               T)))+
+  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue','coral',
+             'darkgreen', 'red','pink','coral1', 'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'coral1',
+             'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3',
+             'coral1', 'yellow','purple', 'green', 'orange', 'cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ReportPercentType, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 7)))+
@@ -1740,7 +1735,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   geom_text(aes(label =round(ReportPercentType)),
            position = position_stack(vjust = 0.5), color = "black", size = 4, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -1864,7 +1859,7 @@ The market share was used to estimate the proportion of the food vehicle market 
 ```{r}
   increment_table_number()
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodLabelnutrient.xlsx'), na = "-")
-  data <- data[,c("food","product_fortification_labelnutrient", 
+  data <- data[,c("food","product_fortification_labelnutrient",
                   "ReportCount2","ReportPercentLabelnutrient")]
   data <- mutate(data, value = paste0(ReportCount2," (",round(ReportPercentLabelnutrient, digits = 1),")"))
   data <- data[,c("food","product_fortification_labelnutrient","value")]
@@ -1901,8 +1896,8 @@ The market share was used to estimate the proportion of the food vehicle market 
        fill = "Fortification labelling",
        caption = caption) +
   geom_text(aes(label =round(ReportCount2)),
-            position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold", angle = 90) +
-   theme(plot.title = element_text(size = 18, face = "bold"),
+            position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") +
+ theme(plot.title = element_text(size = 18, face = "bold"),
   text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 14, face = "plain"),
@@ -1940,8 +1935,8 @@ The market share was used to estimate the proportion of the food vehicle market 
        fill = "Fortification labelling",
        caption = caption) +
   geom_text(aes(label =round(ReportPercentLabelnutrient)),
-            position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold", angle=90) + 
-  theme(plot.title = element_text(size = 18, face = "bold"),
+             position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") +
+ theme(plot.title = element_text(size = 18, face = "bold"),
   text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 14, face = "plain"),
@@ -1958,7 +1953,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   panel.border = element_blank(),
   plot.margin = unit(c(1, 1, 1, 1), "cm"),
   #plot.background = element_rect(fill = "white", color = "#518307", size=1),
-  plot.caption = element_text(size=18, hjust = 0.1, vjust = 137, color = "black"))
+  plot.caption = element_text(size=18, hjust = 0.1, vjust = 136, color = "black"))
   ggsave("Stackbar_RepPerc_Labelnutr.png", width = 8, height = 8, dpi = 300)
   knitr::include_graphics("Stackbar_RepPerc_Labelnutr.png")
 ```
@@ -1992,7 +1987,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   caption <- paste0("Figure: ", figure_number, ": Retail penetration by food and fortification status")
   data <- read_excel(paste0(path,'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data[ , c("food","product_fortification_status",'ReportCount2')]
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   p <- ggplot(data, aes(x = food, y = ReportCount2, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = product_fortification_status))+
@@ -2003,8 +1998,8 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
-        "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+ 
+        "Fortified to any extent" = "chartreuse3",
+        "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+
   labs(x = "Food", y = "Retail penetration",
        fill = "Product Fortification Status",
        caption = caption) +
@@ -2036,7 +2031,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure: ", figure_number, ": Percentage of retail penetration by food and fortification status")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   colrs = c ('grey', 'red','orange','yellow','cadetblue3','chartreuse4','chartreuse3')
   p <- ggplot(data, aes(x = food, y = ReportPercentFort, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "fill")+
@@ -2048,7 +2043,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
+        "Fortified to any extent" = "chartreuse3",
         "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+
   labs(x = "Food", y = "% of retail penetration",
        fill = "Fortification status",
@@ -2078,7 +2073,6 @@ The market share was used to estimate the proportion of the food vehicle market 
 ```
 
 ## Product volume by food
-
 ```{r}
   increment_table_number()
   data <- read_excel(paste0(path, 'ReportsumProdVol_Food.xlsx'), na = "-")
@@ -2108,7 +2102,7 @@ The market share was used to estimate the proportion of the food vehicle market 
             position = position_stack(vjust = 1.0), color = "black", size = 4, fontface = "bold") +
   labs(x = "Food", y = "Product volume", caption = caption) +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 16, face = "plain"),
   axis.title.x = element_text(size = 16, face = "plain"),
@@ -2266,13 +2260,11 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Product volume by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ProductVolumeShopSum, fill = interaction(food,food_type,lex.order = 
-                                                                          T)))+
+  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue' ,'coral',
+             'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'coral1',
+             'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3',
+             'coral1', 'yellow', 'purple', 'green', 'orange','cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ProductVolumeShopSum, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 7)))+
@@ -2307,13 +2299,11 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Percentage of product volume by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ProdVolPercentType, fill = interaction(food,food_type,lex.order =
-                                                                               T)))+
+  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue' ,'coral',
+             'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'coral1',
+             'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3',
+             'coral1', 'yellow', 'purple', 'green', 'orange','cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ProdVolPercentType, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 7)))+
@@ -2323,7 +2313,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   geom_text(aes(label =round(ProdVolPercentType)),
            position = position_stack(vjust = 0.5), color = "black", size = 4, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -2574,7 +2564,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   caption <- paste0("Figure: ", figure_number, ": Product volume by food and product fortification status")
   data <- read_excel(paste0(path,'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data[ , c("food","product_fortification_status",'ProductVolumeShopSum')]
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   p <- ggplot(data, aes(x = food, y = ProductVolumeShopSum, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = product_fortification_status))+
@@ -2585,7 +2575,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
+        "Fortified to any extent" = "chartreuse3",
         "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+ 
   labs(x = "Food", y = "Product volume",
        fill = "Product Fortification Status",
@@ -2618,7 +2608,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure: ", figure_number, ": Percentage of product volume by food and fortification status")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   colrs = c ('grey', 'red','orange','yellow','cadetblue3','chartreuse4','chartreuse3')
   p <- ggplot(data, aes(x = food, y = ProdVolPercentFort, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "fill")+
@@ -2630,7 +2620,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
+        "Fortified to any extent" = "chartreuse3",
         "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+
   labs(x = "Food", y = "% of product volume",
        fill = "Fortification status",
@@ -2806,13 +2796,11 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Products weighted by product volume by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ProdVolPercentType, fill = interaction(food,food_type,lex.order =
-                                                                               T)))+
+  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue', 'coral',
+             'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'coral1',
+             'yellow', 'purple', 'green', 'orange', 'cadetblue3','purple', 'green', 'orange', 'cadetblue3',
+             'coral1', 'yellow', 'purple', 'green', 'orange', 'cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ProdVolPercentType, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 7)))+
@@ -2822,7 +2810,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   geom_text(aes(label =round(ProdVolPercentType)),
            position = position_stack(vjust = 0.5), color = "black", size = 4, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -2855,7 +2843,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   ft <- set_header_labels(ft,
     food = "Food",
     origin = "Origin",
-    ProdVolPercentOrigin = "%" 
+    ProdVolPercentOrigin = "%"
     )
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
@@ -2876,7 +2864,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   p <- ggplot(data, aes(x = food, y = ProdVolPercentOrigin, fill = origin))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = origin))+
-  scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 14)))+ 
+  scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 14)))+
   labs(x = "Food", y = "% of products",
        fill = "Origin",
        caption = caption) +
@@ -2926,7 +2914,6 @@ The market share was used to estimate the proportion of the food vehicle market 
   ft
 ```
 
-
 ```{r}
   increment_figure_number()
   caption <- paste0("Figure: ", figure_number, ": Products weighted by product volume by food and product fortification labelling status")
@@ -2943,7 +2930,7 @@ The market share was used to estimate the proportion of the food vehicle market 
        fill = "Fortification labelling",
        caption = caption) +
   geom_text(aes(label =round(ProdVolPercentLabelnutrient)),
-            position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") + 
+            position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") +
    theme(plot.title = element_text(size = 18, face = "bold"),
   text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
@@ -2972,7 +2959,18 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_table_number()
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data[,c("food","product_fortification_status","ProdVolPercentFort")]
-  data <- pivot_wider(data, names_from = product_fortification_status, values_from = ProdVolPercentFort)
+  desired_order <- c(
+  "Not analyzed",
+  "Not fortified",
+  "Partially fortified",
+  "Fortified below standard min",
+  "Fortified above standard max",
+  "Fortified above standard min",
+  "Fortified to any extent",
+  "Fortified within standard range"
+  )
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = desired_order)
+  data <- pivot_wider(data, names_from = product_fortification_status, values_from = ProdVolPercentFort, names_sort = TRUE)
   ft <- flextable(data) %>% theme_box()
   ft <- bold(ft, bold = TRUE, part = "header")
   ft <- bg(ft, bg = "gray95", part = "header")
@@ -2993,7 +2991,7 @@ The market share was used to estimate the proportion of the food vehicle market 
   increment_figure_number()
   caption <- paste0("Figure: ", figure_number, ": Products weighted by product volume by food and fortification status")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   colrs = c ('grey', 'red','orange','yellow','cadetblue3','chartreuse4','chartreuse3')
   p <- ggplot(data, aes(x = food, y = ProdVolPercentFort, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "fill")+
@@ -3005,7 +3003,7 @@ The market share was used to estimate the proportion of the food vehicle market 
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
+        "Fortified to any extent" = "chartreuse3",
         "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 14)))+
   labs(x = "Food", y = "% of products",
        fill = "Fortification status",
@@ -3049,15 +3047,15 @@ The market share was used to estimate the proportion of the food vehicle market 
     product_fortification_status = "Product fortification status",
     VitA_product_avg_min_pos_or_blank_TotalVolWeight = "Minimum vitamin A content (mg/kg)",
     VitA_product_avg_max_pos_or_blank_TotalVolWeight = "Maximum vitamin A content (mg/kg)",
-    VitA_product_avg_pos_or_blank_TotalVolWeight = "Average vitamin A content (mg/kg)",	
+    VitA_product_avg_pos_or_blank_TotalVolWeight = "Average vitamin A content (mg/kg)",
     Iron_product_avg_min_pos_or_blank_TotalVolWeight 	= "Minimum iron content (mg/kg)",
     Iron_product_avg_max_pos_or_blank_TotalVolWeight = "Maximum iron content (mg/kg)",
     Iron_product_avg_pos_or_blank_TotalVolWeight	= "Average iron content (mg/kg)",
-    Zinc_product_avg_min_pos_or_blank_TotalVolWeight	= "Minimum zinc content (mg/kg)", 
-    Zinc_product_avg_max_pos_or_blank_TotalVolWeight	= "Maximum zinc content (mg/kg)",	
+    Zinc_product_avg_min_pos_or_blank_TotalVolWeight	= "Minimum zinc content (mg/kg)",
+    Zinc_product_avg_max_pos_or_blank_TotalVolWeight	= "Maximum zinc content (mg/kg)",
     Zinc_product_avg_pos_or_blank_TotalVolWeight	= "Average zinc content (mg/kg)",
-    Iodine_product_avg_min_pos_or_blank_TotalVolWeight	= "Minimum iodine content (mg/kg)", 
-    Iodine_product_avg_max_pos_or_blank_TotalVolWeight	= "Maximum iodine content (mg/kg)",	
+    Iodine_product_avg_min_pos_or_blank_TotalVolWeight	= "Minimum iodine content (mg/kg)",
+    Iodine_product_avg_max_pos_or_blank_TotalVolWeight	= "Maximum iodine content (mg/kg)",
     Iodine_product_avg_pos_or_blank_TotalVolWeight	= "Average iodine content (mg/kg)")
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
@@ -3071,23 +3069,34 @@ The market share was used to estimate the proportion of the food vehicle market 
 
 ```{r}
   increment_figure_number()
-  caption <- paste0("Figure: ", figure_number, ": Vitamin A micronutrients contents of Oil brands")
+  caption <- paste0("Figure: ", figure_number, ": Vitamin A micronutrients contents of Oil food")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data %>% dplyr::filter(food=="Oil")
+  desired_order <- c(
+  "Not analyzed",
+  "Not fortified",
+  "Partially fortified",
+  "Fortified below standard min",
+  "Fortified above standard max",
+  "Fortified above standard min",
+  "Fortified to any extent",
+  "Fortified within standard range"
+  )
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = desired_order)
   VitA_standard_min <- data$VitA_standard_min_avg[1]
   VitA_standard_min <- ifelse(is.na(VitA_standard_min),  6, VitA_standard_min)
-  p <- ggplot(data, aes(x = factor(product_fortification_status), y =     
+  p <- ggplot(data, aes(x = (product_fortification_status), y =
                      VitA_product_avg_pos_or_blank_TotalVolWeight,fill=VitA_product_avg_pos_or_blank_TotalVolWeight)) +
-  geom_errorbar(aes(ymin = VitA_product_avg_min_pos_or_blank_TotalVolWeight , ymax =  
+  geom_errorbar(aes(ymin = VitA_product_avg_min_pos_or_blank_TotalVolWeight , ymax =
                       VitA_product_avg_max_pos_or_blank_TotalVolWeight), width = 0.2, color = "black") + geom_point(size = 3, color = "#518307",na.rm=TRUE)+
   ylab("Mg/Kg") +
   xlab("") +
   guides(size = guide_legend(nrow = 2, byrow = T)) +
   geom_hline(yintercept = VitA_standard_min, color = "#518307", linetype = "solid")+  # Here 'yintercept' have the value of minimum fortification standard
   labs(caption = caption)+
-  scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+  
+  scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"), 
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 14, face = "plain"),
   axis.title.x = element_text(size = 20, face = "plain"),
@@ -3125,7 +3134,7 @@ The market share was used to estimate the proportion of the food vehicle market 
     product_fortification_status = "Product fortification status",
     product_avg_price_kg_l_avg_TotalVolWeight = "Average price per kg or L",
     product_min_price_kg_l_avg_TotalVolWeight = "Minimum price per kg or L",
-    product_max_price_kg_l_avg_TotalVolWeight = "Maximum price per kg or L" )
+    product_max_price_kg_l_avg_TotalVolWeight = "Maximum price per kg or L")
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
   ft <- merge_v(ft, j = "food")
@@ -3205,7 +3214,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
             position = position_stack(vjust = 1.0), color = "black", size = 4, fontface = "bold") +
   labs(x = "Food", y = "Product volume", caption = caption) +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 16, face = "plain"),
   axis.title.x = element_text(size = 16, face = "plain"),
@@ -3250,7 +3259,6 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   ft
 ```
 
-
 ```{r}
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Products weighted by retail penetration by food and retail outlet type")
@@ -3272,7 +3280,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   geom_text(aes(label =round(ReportPercentStoretype)),
             position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -3316,18 +3324,15 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   ft
 ```
 
-
 ```{r}
   increment_figure_number()
   caption <- paste0("Figure ", figure_number, ": Products weighted by retail penetration by food and food type")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodType.xlsx'), na = "-")
-  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue'
-             ,'coral', 'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 
-             'orange', 'cadetblue3', 'coral1', 'yellow', 'purple', 'green',
-             'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3' , 'coral1', 'yellow',
-             'purple', 'green', 'orange', 'cadetblue3')
-  p <- ggplot(data, aes(x = food, y = ReportPercentType, fill = interaction(food,food_type,lex.order =
-                                                                               T)))+
+  colrs = c ('yellow', 'purple', 'green', 'orange', 'cadetblue3', 'orange', 'cadetblue3', 'blue' ,'coral',
+             'darkgreen', 'red', 'pink', 'coral1', 'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'coral1',
+             'yellow', 'purple', 'green', 'orange', 'cadetblue3', 'purple', 'green', 'orange', 'cadetblue3',
+             'coral1', 'yellow', 'purple', 'green', 'orange', 'cadetblue3')
+  p <- ggplot(data, aes(x = food, y = ReportPercentType, fill = interaction(food,food_type,lex.order = T)))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = interaction(food,food_type,lex.order = T)))+
   scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 7)))+
@@ -3337,7 +3342,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   geom_text(aes(label =round(ReportPercentType)),
            position = position_stack(vjust = 0.5), color = "black", size = 4, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -3370,7 +3375,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   ft <- set_header_labels(ft,
     food = "Food",
     origin = "Origin",
-    ReportPercentOrigin = "%" 
+    ReportPercentOrigin = "%"
     )
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
@@ -3391,14 +3396,14 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   p <- ggplot(data, aes(x = food, y = ReportPercentOrigin, fill = origin))+
   geom_bar(stat = "identity", position = "dodge")+
   geom_col(aes(fill = origin))+
-  scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 18)))+ 
+  scale_fill_manual(values = colrs, guide = guide_legend(override.aes = list(size = 18)))+
   labs(x = "Food", y = "% of products",
        fill = "Origin",
        caption = caption) +
   geom_text(aes(label =round(ReportPercentOrigin)),
              position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -3442,7 +3447,6 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   ft
 ```
 
-
 ```{r}
   increment_figure_number()
   caption <- paste0("Figure: ", figure_number, ": Products weighted by retail penetration by food and product fortification labelling status")
@@ -3461,7 +3465,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   geom_text(aes(label =round(ReportPercentLabelnutrient)),
             position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") + 
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -3488,7 +3492,18 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   increment_table_number()
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data[,c("food","product_fortification_status","ReportPercentFort")]
-  data <- pivot_wider(data, names_from = product_fortification_status, values_from = ReportPercentFort)
+  desired_order <- c(
+  "Not analyzed",
+  "Not fortified",
+  "Partially fortified",
+  "Fortified below standard min",
+  "Fortified above standard max",
+  "Fortified above standard min",
+  "Fortified to any extent",
+  "Fortified within standard range"
+  )
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = desired_order)
+  data <- pivot_wider(data, names_from = product_fortification_status, values_from = ReportPercentFort, names_sort = TRUE)
   ft <- flextable(data) %>% theme_box()
   ft <- bold(ft, bold = TRUE, part = "header")
   ft <- bg(ft, bg = "gray95", part = "header")
@@ -3509,7 +3524,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   increment_figure_number()
   caption <- paste0("Figure: ", figure_number, ": Products weighted by retail penetration by food and product fortification status")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
-  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extend","Fortified within standard range"))
+  data$product_fortification_status <- factor(data$product_fortification_status, levels = c("Not analyzed", "Not fortified", "Partially fortified", "Fortified below standard min","Fortified above standard max","Fortified above standard min","Fortified to any extent","Fortified within standard range"))
   colrs = c ('grey', 'red','orange','yellow','cadetblue3','chartreuse4','chartreuse3')
   p <- ggplot(data, aes(x = food, y = ReportPercentFort, fill = product_fortification_status))+
   geom_bar(stat = "identity", position = "fill")+
@@ -3521,7 +3536,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
         "Fortified below standard min" = "yellow",
         "Fortified above standard max" = "cadetblue3",
         "Fortified above standard min" = "chartreuse4",
-        "Fortified to any extend" = "chartreuse3",
+        "Fortified to any extent" = "chartreuse3",
         "Fortified within standard range" = "chartreuse4"), guide = guide_legend(override.aes = list(size = 18)))+
   labs(x = "Food", y = "% of products",
        fill = "Fortification status",
@@ -3529,7 +3544,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   geom_text(aes(label = round(ReportPercentFort)),
              position = position_stack(vjust = 0.5), color = "black", size = 5, fontface = "bold") +
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -3566,15 +3581,15 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
     product_fortification_status = "Product fortification status",
     VitA_product_avg_min_pos_or_blank_TotalRepWeight = "Minimum vitamin A content (mg/kg)",
     VitA_product_avg_max_pos_or_blank_TotalRepWeight = "Maximum vitamin A content (mg/kg)",
-    VitA_product_avg_pos_or_blank_TotalRepWeight = "Average vitamin A content (mg/kg)",	
+    VitA_product_avg_pos_or_blank_TotalRepWeight = "Average vitamin A content (mg/kg)",
     Iron_product_avg_min_pos_or_blank_TotalRepWeight 	= "Minimum iron content (mg/kg)",
     Iron_product_avg_max_pos_or_blank_TotalRepWeight = "Maximum iron content (mg/kg)",
     Iron_product_avg_pos_or_blank_TotalRepWeight	= "Average iron content (mg/kg)",
-    Zinc_product_avg_min_pos_or_blank_TotalRepWeight	= "Minimum zinc content (mg/kg)", 
-    Zinc_product_avg_max_pos_or_blank_TotalRepWeight	= "Maximum zinc content (mg/kg)",	
+    Zinc_product_avg_min_pos_or_blank_TotalRepWeight	= "Minimum zinc content (mg/kg)",
+    Zinc_product_avg_max_pos_or_blank_TotalRepWeight	= "Maximum zinc content (mg/kg)",
     Zinc_product_avg_pos_or_blank_TotalRepWeight	= "Average zinc content (mg/kg)",
-    Iodine_product_avg_min_pos_or_blank_TotalRepWeight	= "Minimum iodine content (mg/kg)", 
-    Iodine_product_avg_max_pos_or_blank_TotalRepWeight	= "Maximum iodine content (mg/kg)",	
+    Iodine_product_avg_min_pos_or_blank_TotalRepWeight	= "Minimum iodine content (mg/kg)",
+    Iodine_product_avg_max_pos_or_blank_TotalRepWeight	= "Maximum iodine content (mg/kg)",
     Iodine_product_avg_pos_or_blank_TotalRepWeight	= "Average iodine content (mg/kg)")
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
@@ -3593,18 +3608,18 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   data <- data %>% dplyr::filter(food=="Oil")
   VitA_standard_min <- data$VitA_standard_min_avg[1]
   VitA_standard_min <- ifelse(is.na(VitA_standard_min),  6, VitA_standard_min)
-  p <- ggplot(data, aes(x = factor(product_fortification_status), y =     
+  p <- ggplot(data, aes(x = factor(product_fortification_status), y =
                      VitA_product_avg_pos_or_blank_TotalRepWeight,fill=VitA_product_avg_pos_or_blank_TotalRepWeight)) +
-  geom_errorbar(aes(ymin = VitA_product_avg_min_pos_or_blank_TotalRepWeight , ymax =  
+  geom_errorbar(aes(ymin = VitA_product_avg_min_pos_or_blank_TotalRepWeight , ymax =
                       VitA_product_avg_max_pos_or_blank_TotalRepWeight), width = 0.2, color = "black") + geom_point(size = 3, color = "#518307",na.rm=TRUE)+
   ylab("Mg/Kg") +
   xlab("") +
   guides(size = guide_legend(nrow = 2, byrow = T)) +
   geom_hline(yintercept = VitA_standard_min, color = "#518307", linetype = "solid")+  # Here 'yintercept' have the value of minimum standard deviation
   labs(caption = caption)+
-  scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+  
+  scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
@@ -3642,7 +3657,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
     product_fortification_status = "Product fortification status",
     product_avg_price_kg_l_avg_TotalRepWeight = "Average price per kg or L",
     product_min_price_kg_l_avg_TotalRepWeight = "Minimum price per kg or L",
-    product_max_price_kg_l_avg_TotalRepWeight = "Maximum price per kg or L" )
+    product_max_price_kg_l_avg_TotalRepWeight = "Maximum price per kg or L")
   ft <- align(ft, align = "center", part = "header")
   ft <- align(ft, i = NULL, j = 1, align = "center", part = "body")
   ft <- merge_v(ft, j = "food")
@@ -3658,7 +3673,7 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   caption <- paste0("Figure: ", figure_number, ": Price of Oil brands")
   data <- read_excel(paste0(path, 'ReportsumProdVol_FoodFort.xlsx'), na = "-")
   data <- data %>% dplyr::filter(food=="Oil")
-  p <- ggplot(data, aes(x = factor(product_fortification_status), y = 
+  p <- ggplot(data, aes(x = factor(product_fortification_status), y =
                           product_avg_price_kg_l_avg_TotalRepWeight,fill=product_avg_price_kg_l_avg_TotalRepWeight))+
     geom_errorbar(aes(ymin = product_min_price_kg_l_avg_TotalRepWeight, ymax =
                         product_max_price_kg_l_avg_TotalRepWeight), width = 0.2, color = "black") +
@@ -3668,9 +3683,9 @@ scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   guides(size = guide_legend(nrow = 2, byrow = T)) +
   #geom_hline(yintercept = 20, color = "#518307", linetype = "solid")+ # Here 'yintercept' have the value of minimum standard deviation
   labs(caption = caption)+
-  scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+    
+  scale_y_continuous(limits = c(0, NA), expand = c(0, 0))+
   theme(plot.title = element_text(size = 18, face = "bold"),
-  text = element_text(family = "Arial"),      
+  text = element_text(family = "Arial"),
   axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
   axis.text.x.bottom = element_text(size = 18),
   axis.title.x = element_text(size = 20),
